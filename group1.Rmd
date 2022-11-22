@@ -12,6 +12,8 @@ library(broom)
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(broom))
 suppressPackageStartupMessages(library(modelr))
+install.packages("ggpubr")
+library("ggpubr")
 score <- read.csv("exams.csv")
 ```
 # wrangling
@@ -74,6 +76,13 @@ ggplot(exam_df) +
 )
 ```
 # 3 assumptions
+
+
+1. lineraity: When looking at the plot drawn above, the line of best fit seems to well explain the distribution of the points. Thus, we can say that the relationship is linear/
+
+2. constant variability: when covering the outliers, the distribution of points( how far away from the line of best fit) is pretty constant. 
+
+3. nearly normal residuals: Looking at the graph above, the histogram is bell shaped. Thus, the residuals can be considered nearly normal residual.
 ```{r}
 exam_new %>%
   ggplot() +
@@ -83,3 +92,13 @@ exam_new %>%
   y = "count", x = "residual")
 
 ```
+
+
+# interpretation
+
+The Linear Models can be used to measure the relationship between variables, or to make  predictions.
+When since the lm meets all 3 assumptions, we can say that the english score (average of reading and writing score) might effect the math score.
+
+The two variables might not explain the causation, but we can say that there is a linear correlation, and the relationship is linear. It is a positive relationship, so we can predict that students with high english scores will probably have a high math score. 
+
+
