@@ -1,0 +1,40 @@
+---
+title: "Group 1"
+author: "Hannah Lee"
+date: '2022-11-22'
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+score <- read.csv("exams.csv")
+```
+# wrangling
+
+```{r}
+exam_df <-
+  score %>%
+  mutate(eng.score = (reading.score + writing.score)/2) %>%
+  select(c(6, 9))
+```
+
+# ggplot
+
+```{r}
+
+```
+
+
+```{r}
+exam_model <- lm( eng.score ~ math.score, exam_df)
+```
+
+```{r}
+exam_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = resid)) +
+  geom_hline(yintercept=0) +
+  labs(title = "residuals and prediction", x = "pred", y = "resid")
+```
+
